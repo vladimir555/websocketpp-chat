@@ -14,17 +14,29 @@ namespace config {
 namespace implementation {
 
 
-class DefaultConfig : public IConfig {
+/**
+ * @brief The DefaultConfig class,
+ * config with default values
+ */
+class CDefaultConfig : public IConfig {
 public:
-    DefaultConfig();
-   ~DefaultConfig();
+    CDefaultConfig();
+   ~CDefaultConfig();
 
-    int getPort() const;
-    string getAddress() const;
+    /**
+     * @brief getPort
+     * @return server listening port
+     */
+    int     getPort() const;
+    /**
+     * @brief getAddress
+     * @return server listening ip address
+     */
+    string  getAddress() const;
 
 private:
-    int     port;
-    string  address;
+    int     m_port;
+    string  m_address;
 };
 
 

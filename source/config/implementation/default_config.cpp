@@ -6,24 +6,24 @@ namespace config {
 namespace implementation {
 
 
-DefaultConfig::DefaultConfig()
+CDefaultConfig::CDefaultConfig()
 :
-    port    (55555),
-    address ("127.0.0.1")
+    m_port    (55555),
+    m_address ("127.0.0.1")
 {}
 
 
-DefaultConfig::~DefaultConfig() {
+CDefaultConfig::~CDefaultConfig() {
 }
 
 
-int DefaultConfig::getPort() const {
-    return port;
+int CDefaultConfig::getPort() const {
+    return m_port;
 }
 
 
-string DefaultConfig::getAddress() const {
-    return address;
+string CDefaultConfig::getAddress() const {
+    return m_address;
 }
 
 
