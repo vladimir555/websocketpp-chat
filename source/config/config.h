@@ -19,13 +19,13 @@ namespace config {
 class IConfig
 {
 public:
-    typedef std::shared_ptr<IConfig> SharedPtrT;
+    typedef std::shared_ptr<const IConfig> SharedPtrConstT;
 
     /**
      * @brief getPort
      * @return server listening port
      */
-    virtual int     getPort() const = 0;
+    virtual int getPort() const = 0;
     /**
      * @brief getAddress
      * @return server listening address
