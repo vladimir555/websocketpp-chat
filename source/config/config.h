@@ -16,11 +16,9 @@ namespace config {
  * @brief The IConfig interface
  * application config
  */
-class IConfig
-{
+class IConfig {
 public:
     typedef std::shared_ptr<const IConfig> SharedPtrConstT;
-
     /**
      * @brief getPort
      * @return server listening port

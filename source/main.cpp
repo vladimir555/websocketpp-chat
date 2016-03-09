@@ -1,18 +1,18 @@
+#include <iostream>
+#include <csignal>
+
 #include "config/config.h"
 #include "config/implementation/default_config.h"
 
-#include "service/service.h"
-#include "service/implementation/websocket_request_handler.h"
-
-#include <iostream>
-#include <csignal>
+#include "application/application.h"
+#include "application/implementation/server.h"
 
 
 using config::IConfig;
 using config::implementation::CDefaultConfig;
 
-using service::IService;
-using service::implementation::CWebSocketRequestHandler;
+using application::IApplication;
+using application::implementation::CServer;
 
 
 int main(int argc, char *argv[]) {
@@ -21,22 +21,11 @@ int main(int argc, char *argv[]) {
     std::cout << "port      = " << config->getPort()    << std::endl;
     std::cout << "address   = " << config->getAddress() << std::endl;
 
-    IService::SharedPtrT service(new CWebSocketRequestHandler(config));
-    service->initialize();
+    IApplication::SharedPtrT server(new CServer(config));
 
-    try {
-        service->start();
-
-        // wait for interrupt or terminate
-        while(true) {
-            sleep(1);
-        }
-    } catch(...) {
-        std::cout << "interrupt" << std::endl;
-    }
-
-    service->stop();
-    service->finalize();
+    server->initialize();
+    server->run();
+    server->finalize();
 
     std::cout << "quit" << std::endl;
 }

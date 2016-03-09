@@ -8,6 +8,8 @@
 
 #include "service/service.h"
 #include "config/config.h"
+#include "sys/signal_manager.h"
+#include "sys/signal_handler.h"
 
 
 using websocketpp::lib::placeholders::_1;
@@ -17,6 +19,12 @@ using std::cout;
 using std::endl;
 
 using config::IConfig;
+using sys::g_SignalManager;
+using sys::ISignalHandler;
+
+
+namespace service {
+namespace implementation {
 
 
 /**
@@ -26,32 +34,37 @@ typedef websocketpp::server<websocketpp::config::asio> WebSocketListenerT;
 /**
  * @brief pull out the type of messages sent by our config
  */
-typedef WebSocketListenerT::message_ptr message_ptr;
+typedef WebSocketListenerT::message_ptr MessagePtrT;
 
 
-namespace service {
-namespace implementation {
-
-
+/**
+ * @brief The CWebSocketRequestHandler class
+ */
 class CWebSocketRequestHandler: public IService {
 public:
-    CWebSocketRequestHandler(const IConfig::SharedPtrConstT config);
+    /**
+     * @brief constructor
+     * @param config
+     */
+    CWebSocketRequestHandler(const string &address, const int &port);
+    /**
+     * @brief destructor
+     */
    ~CWebSocketRequestHandler();
-
-
     /**
      * @brief callback to handle incoming messages
      */
-    static void onMessage(WebSocketListenerT* s, websocketpp::connection_hdl hdl, message_ptr msg);
+    static void onMessage(WebSocketListenerT* s, websocketpp::connection_hdl hdl, MessagePtrT msg);
 
-
+    //IService
     void initialize();
     void finalize();
     void start();
     void stop();
 
 private:
-    IConfig::SharedPtrConstT m_config;
+    string              m_address;
+    int                 m_port;
     WebSocketListenerT  m_websocket_listener;
 };
 

@@ -9,6 +9,7 @@
 
 
 using std::list;
+using std::sig_atomic_t;
 
 
 namespace sys {
@@ -19,6 +20,10 @@ namespace sys {
  */
 class g_SignalManager {
 public:
+    /**
+     * @brief SignalAtomicT
+     */
+    typedef sig_atomic_t SignalAtomicT;
     /**
      * @brief sigletone instance
      * @return

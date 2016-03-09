@@ -5,9 +5,6 @@
 namespace sys {
 
 
-g_SignalManager *g_SignalManager::m_instance = NULL;
-
-
 g_SignalManager *g_SignalManager::instance() {
     if (m_instance == NULL)
         m_instance = new g_SignalManager();
@@ -51,6 +48,9 @@ void g_SignalManager::sigtermHandler(int sigint) {
         i.lock()->onTermination();
     }
 }
+
+
+g_SignalManager *g_SignalManager::m_instance = NULL;
 
 
 } /* sys */
