@@ -19,8 +19,8 @@ using std::cout;
 using std::endl;
 
 using config::IConfig;
-using sys::g_SignalManager;
-using sys::ISignalHandler;
+using sys::g_SignalSubject;
+using sys::ISignalObserver;
 
 
 namespace service {

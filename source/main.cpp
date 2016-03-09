@@ -15,6 +15,11 @@ using application::IApplication;
 using application::implementation::CServer;
 
 
+#include <memory>
+#include <list>
+using namespace std;
+
+
 int main(int argc, char *argv[]) {
     IConfig::SharedPtrConstT config(new CDefaultConfig());
 

@@ -12,8 +12,8 @@
 
 using service::IService;
 using service::implementation::CWebSocketRequestHandler;
-using sys::g_SignalManager;
-using sys::ISignalHandler;
+using sys::g_SignalSubject;
+using sys::ISignalObserver;
 using config::IConfig;
 
 
@@ -21,7 +21,10 @@ namespace application {
 namespace implementation {
 
 
-class CServer: public IApplication, public ISignalHandler {
+class CServer:
+    public IApplication,
+    public ISignalObserver
+{
 public:
     CServer(IConfig::SharedPtrConstT config);
    ~CServer();
@@ -37,7 +40,6 @@ private:
     void onTermination();
 
 //    g_SignalManager::SignalAtomicT  m_termination_signal;
-    ISignalHandler::SharedPtrT      m_this_signal_handler;
     IConfig::SharedPtrConstT        m_config;
     IService::SharedPtrT            m_websocket_request_handler;
 

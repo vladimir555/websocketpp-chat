@@ -18,7 +18,7 @@ namespace sys {
 /**
  * @brief global signal handler and multicast to ISignalHandler's
  */
-class g_SignalManager {
+class g_SignalSubject {
 public:
     /**
      * @brief SignalAtomicT
@@ -28,27 +28,27 @@ public:
      * @brief sigletone instance
      * @return
      */
-    static g_SignalManager *instance();
+    static g_SignalSubject *instance();
     /**
      * @brief add signal handler to multicast
      * @param signal_handler
      */
-    void addSignalHandler(ISignalHandler::WeakPtrT signal_handler);
+    void registerSignalObserver(ISignalObserver::WeakPtrT signal_handler);
     /**
      * @brief delete signal handler from multicast
      * @param signal_handler
      */
-    void delSignalHandler(ISignalHandler::WeakPtrT signal_handler);
+    void unregisterSignalObserver(ISignalObserver::WeakPtrT signal_handler);
 
 private:
     /**
      * @brief constructor g_SignalManager
      */
-    g_SignalManager();
+    g_SignalSubject();
     /**
      * @brief destructor
      */
-   ~g_SignalManager();
+   ~g_SignalSubject();
     /**
      * @brief sigint handler
      * @param sigint
@@ -62,11 +62,11 @@ private:
     /**
      * @brief singleton instance
      */
-    static g_SignalManager *m_instance;
+    static g_SignalSubject *m_instance;
     /**
      * @brief handlers list for signals multicast
      */
-    list<ISignalHandler::WeakPtrT> m_handlers;
+    list<ISignalObserver::WeakPtrT> m_handlers;
 };
 
 

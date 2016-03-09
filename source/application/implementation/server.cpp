@@ -9,19 +9,18 @@ namespace implementation {
 CServer::CServer(IConfig::SharedPtrConstT config)
 :
 //    m_termination_signal(0),
-    m_this_signal_handler(this),
     m_config(config),
     m_websocket_request_handler(
         new CWebSocketRequestHandler(
             config->getAddress(),
             config->getPort()))
 {
-    g_SignalManager::instance()->addSignalHandler(m_this_signal_handler);
+//    g_SignalManager::instance()->addSignalHandler(shared_from_this());
 }
 
 
 CServer::~CServer() {
-    g_SignalManager::instance()->delSignalHandler(m_this_signal_handler);
+//    g_SignalManager::instance()->delSignalHandler(shared_from_this());
 }
 
 

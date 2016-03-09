@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
-project(websocketpp-chat-server)
+project(websocketpp-chat)
 
 #BUILD
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin CACHE PATH "Single Directory for all")

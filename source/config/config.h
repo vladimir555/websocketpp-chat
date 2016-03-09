@@ -29,6 +29,8 @@ public:
      * @return server listening address
      */
     virtual string  getAddress() const = 0;
+
+    virtual ~IConfig() {}
 };
 
 
