@@ -8,8 +8,6 @@
 
 #include "service/service.h"
 #include "config/config.h"
-#include "sys/signal_manager.h"
-#include "sys/signal_handler.h"
 
 
 using websocketpp::lib::placeholders::_1;
@@ -19,8 +17,6 @@ using std::cout;
 using std::endl;
 
 using config::IConfig;
-using sys::g_SignalSubject;
-using sys::ISignalObserver;
 
 
 namespace service {

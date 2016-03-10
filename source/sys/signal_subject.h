@@ -4,12 +4,15 @@
 
 #include <list>
 #include <csignal>
+#include <mutex>
 
-#include "signal_handler.h"
+#include "signal_observer.h"
 
 
 using std::list;
 using std::sig_atomic_t;
+using std::recursive_mutex;
+using std::lock_guard;
 
 
 namespace sys {
@@ -28,17 +31,17 @@ public:
      * @brief sigletone instance
      * @return
      */
-    static g_SignalSubject *instance();
+    static g_SignalSubject &instance();
     /**
      * @brief add signal handler to multicast
      * @param signal_handler
      */
-    void registerSignalObserver(ISignalObserver::WeakPtrT signal_handler);
+    void registerSignalObserver(ISignalObserver& signal_observer);
     /**
      * @brief delete signal handler from multicast
      * @param signal_handler
      */
-    void unregisterSignalObserver(ISignalObserver::WeakPtrT signal_handler);
+    void unregisterSignalObserver(ISignalObserver& signal_observer);
 
 private:
     /**
@@ -50,6 +53,15 @@ private:
      */
    ~g_SignalSubject();
     /**
+     * @brief deny copy constructor
+     */
+    g_SignalSubject(const g_SignalSubject&);
+    /**
+     * @brief deny operator =
+     * @return
+     */
+    g_SignalSubject& operator=(const g_SignalSubject&);
+    /**
      * @brief sigint handler
      * @param sigint
      */
@@ -60,13 +72,13 @@ private:
      */
     static void sigtermHandler(int sig);
     /**
-     * @brief singleton instance
-     */
-    static g_SignalSubject *m_instance;
-    /**
      * @brief handlers list for signals multicast
      */
-    list<ISignalObserver::WeakPtrT> m_handlers;
+    list<ISignalObserver*> m_observers;
+    /**
+     * @brief mutex for lock singleton during signal processing
+     */
+    recursive_mutex m_lock;
 };
 
 

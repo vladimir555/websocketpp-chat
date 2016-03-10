@@ -13,14 +13,16 @@ CServer::CServer(IConfig::SharedPtrConstT config)
     m_websocket_request_handler(
         new CWebSocketRequestHandler(
             config->getAddress(),
-            config->getPort()))
+            config->getPort()
+        )
+    )
 {
-//    g_SignalManager::instance()->addSignalHandler(shared_from_this());
+    g_SignalSubject::instance().registerSignalObserver(*this);
 }
 
 
 CServer::~CServer() {
-//    g_SignalManager::instance()->delSignalHandler(shared_from_this());
+    g_SignalSubject::instance().unregisterSignalObserver(*this);
 }
 
 

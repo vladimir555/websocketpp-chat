@@ -2,11 +2,13 @@
 #define CSERVER_H
 
 
+#include <memory>
+
 #include "application/application.h"
 #include "service/service.h"
 #include "service/implementation/websocket_request_handler.h"
-#include "sys/signal_manager.h"
-#include "sys/signal_handler.h"
+#include "sys/signal_subject.h"
+#include "sys/signal_observer.h"
 #include "config/config.h"
 
 

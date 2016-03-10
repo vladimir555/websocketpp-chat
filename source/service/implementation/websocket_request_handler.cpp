@@ -40,6 +40,7 @@ void CWebSocketRequestHandler::onMessage(WebSocketListenerT* s, websocketpp::con
 
 
 void CWebSocketRequestHandler::initialize() {
+    cout << "CWebSocketRequestHandler::initialize" << endl;
     // set logging settings
     m_websocket_listener.set_access_channels(websocketpp::log::alevel::all);
     m_websocket_listener.clear_access_channels(websocketpp::log::alevel::frame_payload);
@@ -56,12 +57,15 @@ void CWebSocketRequestHandler::finalize() {
 
 
 void CWebSocketRequestHandler::start() {
+    cout << "CWebSocketRequestHandler::run" << endl;
     // Listen on port
     m_websocket_listener.listen(m_port);
     // Start the server accept loop
     m_websocket_listener.start_accept();
     // Start the ASIO io_service run loop
-    m_websocket_listener.run();
+    //FIXME:
+//    m_websocket_listener.run();
+    sleep(10);
 }
 
 
