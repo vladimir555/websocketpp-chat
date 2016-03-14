@@ -4,7 +4,7 @@
 namespace sys {
 
 
-g_SignalSubject &g_SignalSubject::instance() {
+g_SignalSubject& g_SignalSubject::instance() {
     static g_SignalSubject instance;
     return instance;
 }
@@ -34,7 +34,7 @@ g_SignalSubject::~g_SignalSubject() {
 
 void g_SignalSubject::sigintHandler(int sigint) {
     lock_guard<recursive_mutex> locker(g_SignalSubject::instance().m_lock);
-    for (auto &i: g_SignalSubject::instance().m_observers) {
+    for (auto& i: g_SignalSubject::instance().m_observers) {
         i->onInterrupt();
     }
 }
@@ -42,7 +42,7 @@ void g_SignalSubject::sigintHandler(int sigint) {
 
 void g_SignalSubject::sigtermHandler(int sigint) {
     lock_guard<recursive_mutex> locker(g_SignalSubject::instance().m_lock);
-    for (auto &i: g_SignalSubject::instance().m_observers) {
+    for (auto& i: g_SignalSubject::instance().m_observers) {
         i->onTermination();
     }
 }

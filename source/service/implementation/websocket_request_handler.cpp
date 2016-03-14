@@ -6,7 +6,7 @@ namespace service {
 namespace implementation {
 
 
-CWebSocketRequestHandler::CWebSocketRequestHandler(const string &address, const int &port)
+CWebSocketRequestHandler::CWebSocketRequestHandler(const string& address, const int& port)
 :
     m_address   (address),
     m_port      (port)
@@ -63,9 +63,7 @@ void CWebSocketRequestHandler::start() {
     // Start the server accept loop
     m_websocket_listener.start_accept();
     // Start the ASIO io_service run loop
-    //FIXME:
-//    m_websocket_listener.run();
-    sleep(10);
+    m_websocket_listener.run();
 }
 
 

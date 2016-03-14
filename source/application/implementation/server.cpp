@@ -6,7 +6,7 @@ namespace application {
 namespace implementation {
 
 
-CServer::CServer(IConfig::SharedPtrConstT config)
+CServer::CServer(const IConfig::SharedPtrConstT& config)
 :
 //    m_termination_signal(0),
     m_config(config),

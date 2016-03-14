@@ -42,7 +42,7 @@ public:
      * @brief constructor
      * @param config
      */
-    CWebSocketRequestHandler(const string &address, const int &port);
+    CWebSocketRequestHandler(const string& address, const int& port);
     /**
      * @brief destructor
      */

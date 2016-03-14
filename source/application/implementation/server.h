@@ -28,7 +28,7 @@ class CServer:
     public ISignalObserver
 {
 public:
-    CServer(IConfig::SharedPtrConstT config);
+    CServer(const IConfig::SharedPtrConstT& config);
    ~CServer();
 
     //IApplication overrides

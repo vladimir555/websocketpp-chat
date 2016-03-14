@@ -31,7 +31,7 @@ public:
      * @brief sigletone instance
      * @return
      */
-    static g_SignalSubject &instance();
+    static g_SignalSubject& instance();
     /**
      * @brief add signal handler to multicast
      * @param signal_handler
