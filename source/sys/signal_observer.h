@@ -2,14 +2,32 @@
 #define SIGNAL_HANDLER_H
 
 
-#include <memory>
+//#include <memory>
+
+
+#include "pattern/IEvent.h"
+#include "pattern/IObserver.h"
+
+
+using pattern::IEvent;
+using pattern::IObserver;
 
 
 namespace sys {
 
 
-class ISignalObserver//: public std::enable_shared_from_this<ISignalHandler>
-{
+//class ISignalEvent: public IEvent {
+//
+//};
+//
+//
+//class ISignalObserver: public IObserver {
+//public:
+//
+//};
+
+
+class ISignalObserver {
 public:
     typedef std::shared_ptr<ISignalObserver> SharedPtrT;
 

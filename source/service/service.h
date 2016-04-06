@@ -12,6 +12,8 @@ class IService {
 public:
     typedef std::shared_ptr<IService> SharedPtrT;
 
+   ~IService() = default;
+
     virtual void initialize()   = 0;
     virtual void finalize()     = 0;
     virtual void start()        = 0;

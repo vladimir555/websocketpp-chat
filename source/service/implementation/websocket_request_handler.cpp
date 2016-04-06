@@ -70,6 +70,9 @@ void CWebSocketRequestHandler::start() {
 void CWebSocketRequestHandler::stop() {
     //TODO: stop listener
     cout << "CWebSocketRequestHandler::stop not implemented" << endl;
+//    m_websocket_listener.get_connection()->close(websocketpp::close::status::service_restart, "forse close");
+    m_websocket_listener.stop_listening();
+    m_websocket_listener.stop();
 }
 
 

@@ -2,14 +2,18 @@
 #define G_SIGNALMANAGER_H
 
 
-#include <list>
+//#include <list>
+//#include <algorithm>
+#include <set>
 #include <csignal>
 #include <mutex>
 
 #include "signal_observer.h"
 
 
-using std::list;
+//using std::list;
+//using std::find;
+using std::set;
 using std::sig_atomic_t;
 using std::recursive_mutex;
 using std::lock_guard;
@@ -74,7 +78,8 @@ private:
     /**
      * @brief handlers list for signals multicast
      */
-    list<ISignalObserver*> m_observers;
+//    list<ISignalObserver*> m_observers;
+    set<ISignalObserver*> m_observers;
     /**
      * @brief mutex for lock singleton during signal processing
      */

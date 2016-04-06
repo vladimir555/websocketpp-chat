@@ -19,6 +19,8 @@ namespace config {
 class IConfig {
 public:
     typedef std::shared_ptr<const IConfig> SharedPtrConstT;
+
+    virtual ~IConfig() = default;
     /**
      * @brief getPort
      * @return server listening port
@@ -29,8 +31,6 @@ public:
      * @return server listening address
      */
     virtual string  getAddress() const = 0;
-
-    virtual ~IConfig() {}
 };
 
 

@@ -12,13 +12,23 @@ g_SignalSubject& g_SignalSubject::instance() {
 
 void g_SignalSubject::registerSignalObserver(ISignalObserver& signal_observer) {
     lock_guard<recursive_mutex> locker(m_lock);
-    m_observers.push_back(&signal_observer);
+
+//    if (find(m_observers.begin(), m_observers.end(), signal_observer) == m_observers.end())
+//        m_observers.push_back(&signal_observer);
+//    else
+//        throw std::runtime_error("register duplicase signal obsever");
+
+    m_observers.insert(&signal_observer);
+//    if (!m_observers.insert(signal_observer))
+//        throw std::runtime_error("register duplicase signal obsever");
+
 }
 
 
 void g_SignalSubject::unregisterSignalObserver(ISignalObserver& signal_observer) {
     lock_guard<recursive_mutex> locker(m_lock);
-    m_observers.remove(&signal_observer);
+//    m_observers.remove(&signal_observer);
+    m_observers.erase(&signal_observer);
 }
 
 
