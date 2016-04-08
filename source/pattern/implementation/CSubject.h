@@ -27,9 +27,9 @@ public:
     CSubject();
    ~CSubject();
 
-    void attach(IObserver &observer);
-    void detach(IObserver &observer);
-    void notifyAll(const IEvent& event);
+    virtual void attach(IObserver &observer) override final;
+    virtual void detach(IObserver &observer) override final;
+    virtual void notifyAll(const IEvent& event) override final;
 
 private:
     set<IObserver* > m_observers;

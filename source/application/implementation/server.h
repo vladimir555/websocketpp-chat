@@ -32,14 +32,14 @@ public:
    ~CServer();
 
     //IApplication overrides
-    void initialize();
-    void finalize();
-    void run();
+    virtual void initialize() override final;
+    virtual void finalize() override final;
+    virtual void run() override final;
 
 private:
     //ISignalHandler overrides
-    void onInterrupt();
-    void onTermination();
+    virtual void onInterrupt() override final;
+    virtual void onTermination() override final;
 
 //    g_SignalManager::SignalAtomicT  m_termination_signal;
     IConfig::SharedPtrConstT        m_config;

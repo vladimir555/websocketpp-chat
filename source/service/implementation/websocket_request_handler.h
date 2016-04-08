@@ -53,15 +53,15 @@ public:
     static void onMessage(WebSocketListenerT* s, websocketpp::connection_hdl hdl, MessagePtrT msg);
 
     //IService
-    void initialize();
-    void finalize();
-    void start();
-    void stop();
+    virtual void initialize() override final;
+    virtual void finalize() override final;
+    virtual void start() override final;
+    virtual void stop() override final;
 
 private:
-    string              m_address;
-    int                 m_port;
-    WebSocketListenerT  m_websocket_listener;
+    string m_address;
+    int m_port;
+    WebSocketListenerT m_websocket_listener;
 };
 
 

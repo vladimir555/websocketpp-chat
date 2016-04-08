@@ -27,16 +27,16 @@ public:
      * @brief getPort
      * @return server listening port
      */
-    int     getPort() const;
+    virtual int getPort() const override final;
     /**
      * @brief getAddress
      * @return server listening ip address
      */
-    string  getAddress() const;
+    virtual string getAddress() const override final;
 
 private:
-    int     m_port;
-    string  m_address;
+    int m_port;
+    string m_address;
 };
 
 

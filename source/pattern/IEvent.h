@@ -11,7 +11,7 @@ namespace pattern {
 
 class IEvent {
 public:
-virtual ~IEvent() = default;
+    virtual ~IEvent() = default;
 };
 
 

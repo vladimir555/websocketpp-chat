@@ -40,7 +40,7 @@ private:
     /**
      * delete move assign
      */
-    CSingleton& operator=(CSingleton &&) = delete;
+    CSingleton& operator=(CSingleton&&) = delete;
 };
 
 
